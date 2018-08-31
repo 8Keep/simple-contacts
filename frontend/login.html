@@ -14,20 +14,31 @@
 <style type="text/css">
 body {
     background-color: #eee;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .container {
     max-width: 400px;
 }
+
+.btn {
+    background-color: #000;
+}
+
+#testB {
+    background-color: #FFF;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
 </style>
 </head>
-
-
 <body>
 
 <div class="container">
+    <div class="container" id="testB">
         <h1>POOP - Login</h1>
         <form class="form">
             <div class="form-group">
@@ -36,10 +47,12 @@ body {
             <div class="form-group">
                 <input class="form-control input-lg" placeholder="Password" type="password">
             </div>
+            <span><a href="register.html">Register</a></span>
             <div class="form-group">
                 <button class="btn btn-primary btn-lg btn-block">Sign In</button>
             </div>
         </form>
+    </div>
 </div>
 </body>
 </html>

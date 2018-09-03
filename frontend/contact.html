@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	
+
 <h1 class="display-4 text-white">POOP - Contact</h1>
 <nav class="navbar navbar-expand bg-dark navbar-dark">
 
@@ -25,7 +25,7 @@
       <a class="nav-link active border-right" href="login.html">Log out</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Add</a>
+      <a class="nav-link" href="#" data-toggle="modal" data-target="#addPopup">Add</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Delete</a>
@@ -38,15 +38,52 @@
 		<input type="search" placeholder="Search..." class="form-control col-3 border">	
 		<div class="col-9"></div>
 	</div>
-	<div class="row this-row">
-	<div class="col-3 border-right"></div>
-	<div class="col-9"><img src ="img/contacts.jpg"></div>
-	</div>
+        <div class="row this-row">
+            <div class="col-3 border-right"></div>
+            <div class="col-9"><img src ="img/contacts.jpg"></div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="addPopup" tabindex="-1" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Add</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form">
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Phone Number" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Address" type="text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-
+<script>
+function add() {
+//     Todo: send data to server and refresh contact list
+}
+</script>
 
 </body>
 </html>

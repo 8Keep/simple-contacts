@@ -1,9 +1,9 @@
 h1 {
-	text-align: left;
+/* 	text-align: left; */
 	font-size: 500%;
 	background: #000;
-	width: inherit;
-	position: relative;
+/* 	width: inherit; */
+/* 	position: relative; */
 	color: #eee;
 	margin: 0;
 	padding-bottom: 10px;
@@ -29,4 +29,23 @@ img
 	width: 100%;
 	height: auto;
 	opacity: 0.5;
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    width:inherit;
+    max-width:inherit;
+    height:inherit;
+    margin: 0 auto;
+    pointer-events:all;
 }

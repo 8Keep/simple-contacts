@@ -23,13 +23,6 @@ class User{
         // prepare query
         $stmt = $this->conn->prepare($query);
 
-        /*// sanitize
-        $this->name=htmlspecialchars(strip_tags($this->name));
-
-        // bind values
-        $stmt->bindParam(":name", $this->name);
-        */
-
         // sanitize
         $name=htmlspecialchars(strip_tags($name));
         $name = "{$name}";
@@ -60,30 +53,20 @@ class User{
 
       // sanitize
       $name=htmlspecialchars(strip_tags($name));
-      $name = "%{$name}%";
+      $name = "{$name}";
 
       $password=htmlspecialchars(strip_tags($password));
-      $password = "%{$password}%";
+      $password = "{$password}";
 
       // bind
       $stmt->bindParam(1, $name);
       $stmt->bindParam(2, $password);
-      #$stmt->bindParam(3, $name);
 
       // execute query
       $stmt->execute();
 
-      //$result = $this->conn->query($query);
-      //if ($result->num_rows > 0){
-      //  echo "Successful Login!";
-      //} else{
-      //  echo "Username/Password combination not valid. Please try again."
-      //}
-
       return $stmt;
-
-
+      
     }
 }
-
 ?>

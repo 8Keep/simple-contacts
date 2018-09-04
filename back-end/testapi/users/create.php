@@ -6,39 +6,40 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-// get database connection
+// include database and object file
 include_once '../config/database.php';
-
-// instantiate contact object
 include_once '../objects/users.php';
 
+// get database connection
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db, 'contacts');
+// instantiate user object
+$user = new User($db);
 
-// get posted data
-$data = json_decode(file_get_contents("php://input"));
-echo $data;
+// get posted data (uneccesary when using $name/$password on line 24/25)
+//$data = json_decode(file_get_contents("php://input"));
+
 // get username/password
 $name=isset($_GET["n"]) ? $_GET["n"] : "";
 $password=isset($_GET["p"]) ? $_GET["p"] : "";
 
 // set contact property values
-//$contact->name = $data->name;
+//$contact->name = $data->name; (uneccesary when using $name/$password on line 24/25)
 $user->name = $name;
+$user->password = $password;
 
 // create the contact
 if($user->create($name, $password)){
-    echo '{';
-        echo '"message": "User was created."';
-    echo '}';
+    echo json_encode(
+        array("message" => "User was created.")
+    );
 }
 
 // if unable to create the contact, tell the user
 else{
-    echo '{';
-        echo '"message": "Unable to create user."';
-    echo '}';
+    echo json_encode(
+        array("message" => "Unable to create user.")
+    );
 }
 ?>

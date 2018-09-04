@@ -3,7 +3,6 @@ class Contact{
 
     // database connection and table name
     private $conn;
-    #private $table_name = "contacts";
     private $table_name;
 
     // object properties
@@ -40,13 +39,6 @@ class Contact{
       // prepare query
       $stmt = $this->conn->prepare($query);
 
-      /*// sanitize
-      $this->name=htmlspecialchars(strip_tags($this->name));
-
-      // bind values
-      $stmt->bindParam(":name", $this->name);
-      */
-
       // sanitize
       $keywords=htmlspecialchars(strip_tags($keywords));
       $keywords = "{$keywords}";
@@ -72,16 +64,9 @@ class Contact{
       // prepare query
       $stmt = $this->conn->prepare($query);
 
-      /*// sanitize
-      $this->name=htmlspecialchars(strip_tags($this->name));
-
-      // bind id of record to delete
-      $stmt->bindParam(1, $this->name);
-      */
-
       // sanitize
       $keywords=htmlspecialchars(strip_tags($keywords));
-      $keywords = "%{$keywords}%";
+      $keywords = "{$keywords}";
 
       // bind
       $stmt->bindParam(1, $keywords);
@@ -110,8 +95,6 @@ class Contact{
 
       // bind
       $stmt->bindParam(1, $keywords);
-      #$stmt->bindParam(2, $keywords);
-      #$stmt->bindParam(3, $keywords);
 
       // execute query
       $stmt->execute();

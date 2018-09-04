@@ -11,7 +11,7 @@ include_once '../objects/contacts.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// initialize object
+// initialize contact object
 $contact = new Contact($db, "contacts");
 
 // query contacts

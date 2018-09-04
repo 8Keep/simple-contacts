@@ -15,7 +15,7 @@ $database = new Database();
 $db = $database->getConnection();
 
 // instantiate contact object
-$contact = new User($db, "users");
+$contact = new User($db);
 
 // get username and password
 $name=isset($_GET["n"]) ? $_GET["n"] : "";

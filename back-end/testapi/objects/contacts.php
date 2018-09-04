@@ -72,7 +72,7 @@ class Contact{
       $stmt->bindParam(1, $keywords);
 
       // execute query
-      if($stmt->execute()){
+      if($stmt->execute() && $stmt->rowCount() > 0){
           return true;
       }
 

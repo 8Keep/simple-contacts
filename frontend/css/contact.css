@@ -24,6 +24,7 @@ h1 {
 {
 	height: 900px;
 }
+
 img
 {
 	width: 100%;
@@ -49,7 +50,7 @@ img
     margin: 0 auto;
     pointer-events:all;
 }
-.addbut
+#addbut
 {
 	outline: none !important;
 	box-shadow: none;

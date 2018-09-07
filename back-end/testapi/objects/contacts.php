@@ -1,4 +1,5 @@
 <?php
+
 class Contact{
 
     // database connection and table name
@@ -10,6 +11,7 @@ class Contact{
     public $name;
     public $phone;
     public $address;
+    public $username;
 
     // constructor with $db as database connection
     public function __construct($db, $table){
@@ -18,13 +20,20 @@ class Contact{
     }
 
     // read contacts
-    function read(){
+    function read($username){
 
         // select all query
-        $query = "SELECT * FROM " . $this->table_name . " p";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE UserID = (SELECT UserID FROM login WHERE username = ?)";
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $username=htmlspecialchars(strip_tags($username));
+        $username = "{$username}";
+
+        // bind
+        $stmt->bindParam(1, $username);
 
         // execute query
         $stmt->execute();
@@ -33,28 +42,33 @@ class Contact{
     }
 
   // create contact
-  function create($name, $phone, $address){
+  function create($name, $phone, $address, $username){
 
       // query to insert record
-      $query = "INSERT INTO " . $this->table_name . " (name, phonenumber, address) VALUES (?,?,?)";
+      $query = "INSERT INTO " . $this->table_name . " (name, phonenumber, address, UserID) VALUES (?,?,?,(SELECT UserID FROM login WHERE username = ?))";
 
       // prepare query
       $stmt = $this->conn->prepare($query);
 
       // sanitize
-      $firstName=htmlspecialchars(strip_tags($firstName));
-      $firstName = "{$name}";
+      $name=htmlspecialchars(strip_tags($name));
+      $name = "{$name}";
 
-      $email=htmlspecialchars(strip_tags($email));
-      $email = "{$phone}";
+      $phone=htmlspecialchars(strip_tags($phone));
+      $phone = "{$phone}";
 
       $address=htmlspecialchars(strip_tags($address));
       $address = "{$address}";
+
+      $username=htmlspecialchars(strip_tags($username));
+      $username = "{$username}";
 
       // bind
       $stmt->bindParam(1, $name);
       $stmt->bindParam(2, $phone);
       $stmt->bindParam(3, $address);
+      $stmt->bindParam(4, $username);
+
 
       // execute query
       if($stmt->execute()){
@@ -66,11 +80,10 @@ class Contact{
   }
 
   // delete contact
-  function delete($keywords){
+  function delete($keywords, $username){
 
       // delete query
-      $query = "DELETE FROM " . $this->table_name . " WHERE id LIKE ?";
-
+      $query = "DELETE FROM " . $this->table_name . " WHERE id LIKE ? AND UserID = (SELECT UserID FROM login WHERE username = ?)";
       // prepare query
       $stmt = $this->conn->prepare($query);
 
@@ -78,8 +91,12 @@ class Contact{
       $keywords=htmlspecialchars(strip_tags($keywords));
       $keywords = "{$keywords}";
 
+      $username=htmlspecialchars(strip_tags($username));
+      $username = "{$username}";
+
       // bind
       $stmt->bindParam(1, $keywords);
+      $stmt->bindParam(1, $username);
 
       // execute query
       if($stmt->execute() && $stmt->rowCount() > 0){
@@ -91,10 +108,15 @@ class Contact{
   }
 
   // search contacts
-  function search($keywords){
+  function search($keywords, $username){
 
+    $regex = "/[\s]/";
+    if (preg_match($regex, $keywords)) {
+      read($username);
+      return;
+    }
       // select all query
-      $query = "SELECT * FROM " . $this->table_name . " WHERE name LIKE ? OR phonenumber LIKE ? OR address LIKE ?";
+      $query = "SELECT * FROM " . $this->table_name . " WHERE name LIKE ? OR phonenumber LIKE ? OR address LIKE ? AND UserID = (SELECT UserID FROM login WHERE username = ?)";
 
       // prepare query statement
       $stmt = $this->conn->prepare($query);
@@ -103,10 +125,15 @@ class Contact{
       $keywords=htmlspecialchars(strip_tags($keywords));
       $keywords = "%{$keywords}%";
 
+      $username=htmlspecialchars(strip_tags($username));
+      $username = "%{$username}%";
+
       // bind
       $stmt->bindParam(1, $keywords);
       $stmt->bindParam(2, $keywords);
       $stmt->bindParam(3, $keywords);
+      $stmt->bindParam(4, $username);
+
 
       // execute query
       $stmt->execute();
@@ -114,4 +141,3 @@ class Contact{
       return $stmt;
   }
 }
-

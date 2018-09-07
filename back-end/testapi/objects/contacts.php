@@ -8,6 +8,10 @@ class Contact{
     // object properties
     public $id;
     public $name;
+    public $phonenumber;
+    public $address; 
+    public $UserID; 
+
 
     // constructor with $db as database connection
     public function __construct($db, $table){

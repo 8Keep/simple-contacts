@@ -28,6 +28,7 @@ $username = $data->username;
 $stmt = $contact->search($keyword, $username);
 $num = $stmt->rowCount();
 
+
 // check if more than 0 record found
 if($num>0){
 
@@ -47,7 +48,7 @@ if($num>0){
         $contact_item=array(
             "id" => $id,
             "name" => $name,
-            "phone" => $phone,
+            "phone" => $phonenumber,
             "address" => $address,
         );
 

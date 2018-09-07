@@ -50,7 +50,7 @@ img
     margin: 0 auto;
     pointer-events:all;
 }
-#addbut
+.navbut
 {
 	outline: none !important;
 	box-shadow: none;

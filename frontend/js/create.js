@@ -1,4 +1,4 @@
-var urlBase = 'http://localhost/backend';
+var urlBase = 'http://localhost/COP4331-Small-Project/back-end/testapi';
 var extension = "php";
 
 
@@ -32,6 +32,10 @@ function doCreate()
 	console.log(xhr.responseText);
 	var jsonObject = JSON.parse( xhr.responseText );
 	console.log(jsonObject);
+	if(jsonObject.message == "User was created.")
+		document.getElementById("CreateResult").className = "text-success";
+	else
+		document.getElementById("CreateResult").className = "text-danger";
 	document.getElementById("CreateResult").innerHTML = jsonObject.message;
 	}
 	// 	// userId = jsonObject.id;

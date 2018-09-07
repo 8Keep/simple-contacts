@@ -22,7 +22,7 @@ $user = new User($db);
 //$password=isset($_GET["p"]) ? $_GET["p"] : "";
 // get user-entered username and password in json format
 $data = json_decode(file_get_contents("php://input", true));
-$user->username = $data->login;
+$user->username = $data->create;
 $user->password = $data->password;
 
 // create the contact

@@ -72,4 +72,12 @@ function appendText(name, id)
 //<tr id="7"><td>Name</td></tr>
     var contactTable = $("#contactTable");
     contactTable.append(text);
+
+}
+
+function delete()
+{
+
+    $(this).parent.parent().remove(); 
+    //$("#" + id).remove();
 }

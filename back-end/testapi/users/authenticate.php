@@ -15,17 +15,17 @@ $database = new Database();
 $db = $database->getConnection();
 
 // instantiate contact object
-$contact = new User($db);
+$user = new User($db);
 
-// get username and password from url query string
+// get username and password
 //$name=isset($_GET["n"]) ? $_GET["n"] : "";
 //$password=isset($_GET["p"]) ? $_GET["p"] : "";
 $data = json_decode(file_get_contents("php://input", true));
-$name = $data->login;
-$password = $data->password;
+$user->username = $data->login;
+$user->password = $data->password;
 
 // query users table to see if username/password exists in database
-$stmt = $contact->authenticate($name, $password);
+$stmt = $contact->authenticate($user->username, $user->password);
 $num = $stmt->rowCount();
 
 // check if EXACTLY one record is found. No duplicates are allowed

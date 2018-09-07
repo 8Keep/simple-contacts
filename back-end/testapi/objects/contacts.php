@@ -95,7 +95,7 @@ class Contact{
 
       // bind
       $stmt->bindParam(1, $keywords);
-      $stmt->bindParam(1, $username);
+      $stmt->bindParam(2, $username);
 
       // execute query
       if($stmt->execute() && $stmt->rowCount() > 0){

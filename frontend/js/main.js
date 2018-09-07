@@ -58,5 +58,6 @@ function appendText(name, id)
 
 function delete()
 {
-    
+    $(this).closest('tr').remove(); 
+    //$("#" + id).remove();
 }

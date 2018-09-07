@@ -20,7 +20,7 @@ function add() {
                     username: username };
     
     $.post(
-        "/COP4331-Small-Project-master/back-end/testapi/contact/create.php",
+        "/COP4331-Small-Project/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
         function(result){     });
     
@@ -41,7 +41,7 @@ function search()
     alert(json);
     
     $.post(
-        "/COP4331-Small-Project-master/back-end/testapi/contact/search.php",
+        "/COP4331-Small-Project/back-end/testapi/contact/search.php",
         json,
         function(result){     });
     

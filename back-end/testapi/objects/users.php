@@ -3,7 +3,7 @@ class User{
 
     // database connection and table name
     private $conn;
-    private $table_name = "login";
+    private $table_name = "users";
 
     // object properties
     public $id;
@@ -66,7 +66,7 @@ class User{
       $stmt->execute();
 
       return $stmt;
-      
+
     }
 }
 ?>

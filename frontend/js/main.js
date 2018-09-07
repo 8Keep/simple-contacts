@@ -1,14 +1,29 @@
+var username;
+
+$( document ).ready(function() {
+    username = getUsername();
+    console.log( "document loaded! checking for username cookie." );
+    if (username == undefined) {
+        console.log("username is undefined");
+        //TODO: Uncomment this in final version
+        //alert("User is not logged in! You will now be redirected to login.");
+        //window.location.href="index.html";
+    }
+    $("#searchbox").val("");
+    search();
+});
 
 function add() {
     var contact = { name: $("#name").val(),
                     phone: $("#phone").val(),
-                    address: $("#address").val() };
+                    address: $("#address").val(),
+                    username: username };
     
-    alert(JSON.stringify(contact));
+    $.post(
+        "/COP4331-Small-Project-master/back-end/testapi/contact/create.php",
+        JSON.stringify(contact),
+        function(result){     });
     
-    $.post("/COP4331-Small-Project-master/back-end/testapi/contact/create.php", JSON.stringify(contact), function(result){
-        alert(result);
-        });
     
     $("#name").val("");
     $("#phone").val("");
@@ -16,53 +31,18 @@ function add() {
 }
 
 function getUsername() {
-    return $.cookie("username");
-}
-/*
-function getAllContacts() {
-    $.getJSON("/search.php"
+    return Cookies.get("username");
 }
 
 function search()
 {
-    var srch = document.getElementById("searchbox").value;
-    document.getElementById("colorSearchResult").innerHTML = "";
+    var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
-    var colorList = document.getElementById("colorList");
-    colorList.innerHTML = "";
+    alert(json);
     
-    var jsonPayload = '{"search" : "' + srch + '"}';
-    var url = urlBase + '/SearchColors.' + extension;
+    $.post(
+        "/COP4331-Small-Project-master/back-end/testapi/contact/search.php",
+        json,
+        function(result){     });
     
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try
-    {
-        xhr.onreadystatechange = function() 
-        {
-            if (this.readyState == 4 && this.status == 200) 
-            {
-                hideOrShow( "colorList", true );
-                
-                document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-                var jsonObject = JSON.parse( xhr.responseText );
-                
-                var i;
-                for( i=0; i<jsonObject.results.length; i++ )
-                {
-                    var opt = document.createElement("option");
-                    opt.text = jsonObject.results[i];
-                    opt.value = "";
-                    colorList.options.add(opt);
-                }
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch(err)
-    {
-        document.getElementById("colorSearchResult").innerHTML = err.message;
-    }
-    
-}*/
+}

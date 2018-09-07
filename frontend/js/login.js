@@ -34,7 +34,7 @@ function doLogin()
 		// {
 		if(jsonObject.message == "Successful Login!")
 		{
-            $.cookie("username", login);
+            Cookies.set("username", login);
 			document.getElementById("loginResult").className = "text-success";
 			window.location.href="contact.html";
 		}

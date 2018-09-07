@@ -1,4 +1,4 @@
-var urlBase = 'http://localhost/backend';
+var urlBase = 'http://localhost/COP4331-Small-Project/back-end/testapi';
 var extension = "php";
 
 var userId = 0;
@@ -32,7 +32,16 @@ function doLogin()
 		
 		// if( userId < 1 )
 		// {
-		// 	document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+		if(jsonObject.message == "Successful Login!")
+		{
+			document.getElementById("loginResult").className = "text-success";
+			window.location.href="contact.html";
+		}
+		else
+			document.getElementById("loginResult").className = "text-danger";
+		document.getElementById("loginResult").innerHTML = jsonObject.message;
+		
+
 		// 	return;
 		// }
 		

@@ -17,18 +17,15 @@ $db = $database->getConnection();
 // prepare contact object
 $contact = new Contact($db, 'contacts');
 
-// get posted data (unnecessary if using $keywords on line 24)
-//$data = json_decode(file_get_contents("php://input"));
-
-// get keywords
-$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
-
-// set contact property values
-//$contact->name = $data->name;
-$contact->name = $keywords;
+// get keywords from url query string
+//$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+$data = json_decode(file_get_contents("php://input", true));
+$contact->name = $data->name;
+$contact->phone = $data->phone;
+$contact->address = $data->address;
 
 // create the contact
-if($contact->create($keywords)){
+if($contact->create($contact->name, $contact->phone, $contact->address)){
     echo json_encode(
         array("message" => "Contact was created.")
     );

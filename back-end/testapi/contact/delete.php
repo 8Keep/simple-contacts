@@ -18,17 +18,19 @@ $db = $database->getConnection();
 // prepare contact object
 $contact = new Contact($db, "contacts");
 
-// get contact id (uneccesary if using $keywords on line 28)
-//$data = json_decode(file_get_contents("php://input"));
+// get contact info to be deleted
+$data = json_decode(file_get_contents("php://input"));
+$contact->id = $data->id;
+$contact->name = $data->name;
+$contact->phone = $data->phone;
+$contact->address = $data->address;
 
-// set contact id to be deleted (uneccesary if using $keywords on line 28)
-//$contact->name = $data->name;
 
-// get keywords
-$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+// get keywords from url query string
+//$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
 
 // delete the contact
-if($contact->delete($keywords)){
+if($contact->delete($contact->id)){
     echo json_encode(
         array("message" => "Contact was deleted.")
     );

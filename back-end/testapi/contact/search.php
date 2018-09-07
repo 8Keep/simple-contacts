@@ -2,6 +2,9 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // include database and object files
 include_once '../config/database.php';
@@ -14,11 +17,13 @@ $db = $database->getConnection();
 // initialize object
 $contact = new Contact($db, "contacts");
 
-// get keywords
-$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+// get keywords from url query string
+//$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+
+$data = json_decode(file_get_contents("php://input", true));
 
 // query contacts
-$stmt = $contact->search($keywords);
+$stmt = $contact->search($data);
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
@@ -40,6 +45,8 @@ if($num>0){
         $contact_item=array(
             "id" => $id,
             "name" => $name,
+            "phone" => $phone,
+            "address" => $address,
         );
 
         array_push($contacts_arr["records"], $contact_item);

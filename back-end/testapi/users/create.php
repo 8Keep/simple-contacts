@@ -17,17 +17,14 @@ $db = $database->getConnection();
 // instantiate user object
 $user = new User($db);
 
-// get posted data (uneccesary when using $name/$password on line 24/25)
-//$data = json_decode(file_get_contents("php://input"));
+// get username/password from url query string
+//$name=isset($_GET["n"]) ? $_GET["n"] : "";
+//$password=isset($_GET["p"]) ? $_GET["p"] : "";
 
-// get username/password
-$name=isset($_GET["n"]) ? $_GET["n"] : "";
-$password=isset($_GET["p"]) ? $_GET["p"] : "";
-
-// set contact property values
-//$contact->name = $data->name; (uneccesary when using $name/$password on line 24/25)
-$user->name = $name;
-$user->password = $password;
+// get user-entered username and password in json format
+$data = json_decode(file_get_contents("php://input", true));
+$user->name = $data->login;
+$user->password = $data->password;
 
 // create the contact
 if($user->create($name, $password)){

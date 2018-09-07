@@ -17,6 +17,10 @@ function add() {
     $("#phone").val("");
     $("#address").val("");
 }
+
+function getUsername() {
+    return $.cookie("username");
+}
 /*
 function getAllContacts() {
     $.getJSON("/search.php"

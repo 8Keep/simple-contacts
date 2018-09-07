@@ -4,7 +4,7 @@ class Contact{
 
     // database connection and table name
     private $conn;
-    private $table_name;
+    private $table_name = "contacts";
 
     // object properties
     public $id;
@@ -14,9 +14,8 @@ class Contact{
     public $username;
 
     // constructor with $db as database connection
-    public function __construct($db, $table){
+    public function __construct($db){
         $this->conn = $db;
-        $this->table_name = $table;
     }
 
     // read contacts

@@ -23,6 +23,7 @@ $data = json_decode(file_get_contents("php://input", true));
 $contact->name = $data->name;
 $contact->phone = $data->phone;
 $contact->address = $data->address;
+$contact->username = $data->username;
 
 // create the contact
 if($contact->create($contact->name, $contact->phone, $contact->address)){

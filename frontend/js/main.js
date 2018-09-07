@@ -2,11 +2,22 @@ $(document).ready(function(){
     getAllContacts();
 }
 
-function add()
-{
+function add() {
+    var contact = { name: $("#name").val(),
+                    phone: $("#phone").val(),
+                    address: $("#address").val() };
     
+    alert(JSON.stringify(contact));
+    
+    $.post("/add.php", JSON.stringify(contact), function(result){
+        alert(result);
+        });
+    
+    $("#name").val("");
+    $("#phone").val("");
+    $("#address").val("");
 }
-
+/*
 function getAllContacts() {
     $.getJSON("/search.php"
 }
@@ -53,4 +64,4 @@ function search()
         document.getElementById("colorSearchResult").innerHTML = err.message;
     }
     
-}
+}*/

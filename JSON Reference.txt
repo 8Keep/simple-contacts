@@ -7,7 +7,11 @@ create.php add json
     "address":"670 Seville Court"
 }
 
-
+create.php output
+{
+    if successful-> "Contact was created."
+    if unsuccessful-> "Unable to create contact."
+}
 
 
 search.php for searching

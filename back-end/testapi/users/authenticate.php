@@ -25,7 +25,7 @@ $user->username = $data->login;
 $user->password = $data->password;
 
 // query users table to see if username/password exists in database
-$stmt = $contact->authenticate($user->username, $user->password);
+$stmt = $user->authenticate($user->username, $user->password);
 $num = $stmt->rowCount();
 
 // check if EXACTLY one record is found. No duplicates are allowed

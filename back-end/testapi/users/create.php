@@ -20,14 +20,13 @@ $user = new User($db);
 // get username/password from url query string
 //$name=isset($_GET["n"]) ? $_GET["n"] : "";
 //$password=isset($_GET["p"]) ? $_GET["p"] : "";
-
 // get user-entered username and password in json format
 $data = json_decode(file_get_contents("php://input", true));
 $user->name = $data->login;
 $user->password = $data->password;
 
 // create the contact
-if($user->create($name, $password)){
+if($user->create($user->name, $user->password)){
     echo json_encode(
         array("message" => "User was created.")
     );

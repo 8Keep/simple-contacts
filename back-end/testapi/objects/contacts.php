@@ -140,3 +140,4 @@ class Contact{
       return $stmt;
   }
 }
+?>

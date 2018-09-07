@@ -1,6 +1,3 @@
-$(document).ready(function(){
-    getAllContacts();
-}
 
 function add() {
     var contact = { name: $("#name").val(),
@@ -9,7 +6,7 @@ function add() {
     
     alert(JSON.stringify(contact));
     
-    $.post("/add.php", JSON.stringify(contact), function(result){
+    $.post("/COP4331-Small-Project-master/back-end/testapi/contact/create.php", JSON.stringify(contact), function(result){
         alert(result);
         });
     

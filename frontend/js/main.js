@@ -5,7 +5,7 @@ $( document ).ready(function() {
     $("#Username").html(username);
     console.log( "document loaded! checking for username cookie." );
     if (username == undefined) {
-        console.log("username is undefined");
+        //console.log("username is undefined");
         //TODO: Uncomment this in final version
         //alert("User is not logged in! You will now be redirected to login.");
         //window.location.href="index.html";
@@ -37,14 +37,32 @@ function getUsername() {
 
 function search()
 {
+    //console.log("search clicked: " + $("#searchbox").val());
     var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
-    // alert(json);
-    
-    $.post(
-        "/COP4331-Small-Project/back-end/testapi/contact/search.php",
-        json,
-        function(result){     });
+    alert(json);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/search.php", false);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(json);
+        console.log(xhr.responseText);
+        var jsonObject = JSON.parse( xhr.responseText );
+        console.log(jsonObject);
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+
+    // $.post(
+    //     "/COP4331-Small-Project/back-end/testapi/contact/search.php",
+    //     json,
+    //     function(result){   console.log(result);  });
     
 }
 
@@ -57,10 +75,17 @@ function appendText(name, id)
     console.log(text);
     var contactTable = $("#contactTable");
     contactTable.append(text);
+
     //contactTable.empty();
 }
 
-// function delete()
-// {
-    
-// }
+
+
+
+
+function delete()
+{
+
+    $(this).parent.parent().remove(); 
+    //$("#" + id).remove();
+}

@@ -86,6 +86,6 @@ function appendText(name, id)
 function delete()
 {
 
-    $(this).parent.parent().remove(); 
+    $(event.target).parent().parent().remove(); 
     //$("#" + id).remove();
 }

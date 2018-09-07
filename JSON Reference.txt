@@ -19,3 +19,11 @@ search.php for searching
     "keyword":"davis"
 }
 
+search.php output
+{
+    "id" => $id,
+    "name" => $name,
+    "phone" => $phone,
+    "address" => $address,
+}
+

@@ -11,6 +11,7 @@ $( document ).ready(function() {
         //window.location.href="index.html";
     }
     $("#searchbox").val("");
+    appendText("bao", 1);
     search();
 });
 
@@ -49,14 +50,17 @@ function search()
 
 function appendText(name, id)
 {
-    var text = "<tr id\"" + id + "\" <td>" + name + 
+
+    var text = "<tr id=\"" + id + "\"> <td>" + name + 
         "<button class=\"btn btn-outline-secondary float-right\" onClick=\"delete();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
 //<tr id="7"><td>Name</td></tr>
+    console.log(text);
     var contactTable = $("#contactTable");
     contactTable.append(text);
+    //contactTable.empty();
 }
 
-function delete()
-{
+// function delete()
+// {
     
-}
+// }

@@ -1,0 +1,17 @@
+
+
+create.php add json
+{
+    "name":"davis rollman",
+    "phone":"3216849301"
+    "address":"670 Seville Court"
+}
+
+
+
+
+search.php for searching
+{
+    "keyword":"davis"
+}
+

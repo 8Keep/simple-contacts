@@ -49,9 +49,14 @@ function search()
 
 function appendText(name, id)
 {
-    var text = "<tr id\"" + id + "\" <td>" + name + "</td></tr>";
-//        <tr id="7"><td>Name</td></tr>
+    var text = "<tr id\"" + id + "\" <td>" + name + 
+        "<button class=\"btn btn-outline-secondary float-right\" onClick=\"delete();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
+//<tr id="7"><td>Name</td></tr>
     var contactTable = $("#contactTable");
     contactTable.append(text);
 }
 
+function delete()
+{
+    
+}

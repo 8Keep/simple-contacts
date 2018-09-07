@@ -37,6 +37,10 @@ if($num>0){
         $contact_item=array(
             "id" => $id,
             "name" => $name,
+            "phonenumber" => $phonenumber,
+            "address" => $address, 
+            "UserID" => $UserID
+
         );
 
         array_push($contacts_arr["records"], $contact_item);

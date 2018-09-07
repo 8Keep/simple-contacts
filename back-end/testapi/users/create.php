@@ -22,11 +22,11 @@ $user = new User($db);
 //$password=isset($_GET["p"]) ? $_GET["p"] : "";
 // get user-entered username and password in json format
 $data = json_decode(file_get_contents("php://input", true));
-$user->name = $data->login;
+$user->username = $data->login;
 $user->password = $data->password;
 
 // create the contact
-if($user->create($user->name, $user->password)){
+if($user->create($user->username, $user->password)){
     echo json_encode(
         array("message" => "User was created.")
     );

@@ -2,6 +2,7 @@ var username;
 
 $( document ).ready(function() {
     username = getUsername();
+    $("#Username").html(username);
     console.log( "document loaded! checking for username cookie." );
     if (username == undefined) {
         console.log("username is undefined");
@@ -37,7 +38,7 @@ function search()
 {
     var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
-    alert(json);
+    // alert(json);
     
     $.post(
         "/COP4331-Small-Project/back-end/testapi/contact/search.php",

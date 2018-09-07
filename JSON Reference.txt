@@ -20,10 +20,11 @@ search.php for searching
 }
 
 search.php output
-{
-    "id" => $id,
-    "name" => $name,
-    "phone" => $phone,
-    "address" => $address,
+{contacts:
+    [
+        "id" => $id,
+        "name" => $name,
+        "phone" => $phone,
+        "address" => $address,
+    ]
 }
-

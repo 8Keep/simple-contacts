@@ -45,3 +45,12 @@ function search()
         function(result){     });
     
 }
+
+function appendText(name, id)
+{
+    var text = "<tr id\"" + id + "\" <td>" + name + "</td></tr>";
+//        <tr id="7"><td>Name</td></tr>
+    var contactTable = $("#contactTable");
+    contactTable.append(text);
+}
+

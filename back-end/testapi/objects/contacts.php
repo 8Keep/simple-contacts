@@ -4,7 +4,7 @@ class Contact{
 
     // database connection and table name
     private $conn;
-    private $table_name;
+    private $table_name = "contacts";
 
     // object properties
     public $id;
@@ -14,9 +14,8 @@ class Contact{
     public $username;
 
     // constructor with $db as database connection
-    public function __construct($db, $table){
+    public function __construct($db){
         $this->conn = $db;
-        $this->table_name = $table;
     }
 
     // read contacts
@@ -96,7 +95,7 @@ class Contact{
 
       // bind
       $stmt->bindParam(1, $keywords);
-      $stmt->bindParam(1, $username);
+      $stmt->bindParam(2, $username);
 
       // execute query
       if($stmt->execute() && $stmt->rowCount() > 0){
@@ -141,3 +140,4 @@ class Contact{
       return $stmt;
   }
 }
+?>

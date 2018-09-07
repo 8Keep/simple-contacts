@@ -15,15 +15,17 @@ $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
-$contact = new Contact($db, "contacts");
+$contact = new Contact($db);
 
 // get keywords from url query string
 //$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
 
 $data = json_decode(file_get_contents("php://input", true));
+$keyword = $data->keyword;
+$username = $data->username;
 
 // query contacts
-$stmt = $contact->search($data);
+$stmt = $contact->search($keyword, $username);
 $num = $stmt->rowCount();
 
 // check if more than 0 record found

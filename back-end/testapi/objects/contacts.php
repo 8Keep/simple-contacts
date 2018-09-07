@@ -126,7 +126,7 @@ class Contact{
       $keywords = "%{$keywords}%";
 
       $username=htmlspecialchars(strip_tags($username));
-      $username = "%{$username}%";
+      $username = "{$username}";
 
       // bind
       $stmt->bindParam(1, $keywords);

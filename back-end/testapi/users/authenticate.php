@@ -17,10 +17,9 @@ $db = $database->getConnection();
 // instantiate contact object
 $contact = new User($db);
 
-// get username and password
-//$name=isset($_GET["login"]) ? $_GET["login"] : "";
-//$password=isset($_GET["password"]) ? $_GET["password"] : "";
-
+// get username and password from url query string
+//$name=isset($_GET["n"]) ? $_GET["n"] : "";
+//$password=isset($_GET["p"]) ? $_GET["p"] : "";
 $data = json_decode(file_get_contents("php://input", true));
 $name = $data->login;
 $password = $data->password;
@@ -29,9 +28,7 @@ $password = $data->password;
 $stmt = $contact->authenticate($name, $password);
 $num = $stmt->rowCount();
 
-
 // check if EXACTLY one record is found. No duplicates are allowed
-header('Content-type: application/json');
 if($num == 1){
   echo json_encode(
       array("message" => "Successful Login!")

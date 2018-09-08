@@ -116,7 +116,7 @@ class Contact{
       return;
     }
       // select all query
-      $query = "SELECT * FROM " . $this->table_name . " WHERE name LIKE ? OR phonenumber LIKE ? OR address LIKE ? AND UserID = (SELECT UserID FROM login WHERE username = ?)";
+      $query = "SELECT * FROM " . $this->table_name . " WHERE (name LIKE ? OR phonenumber LIKE ? OR address LIKE ?) AND UserID = (SELECT UserID FROM login WHERE username = ?)";
 
       // prepare query statement
       $stmt = $this->conn->prepare($query);

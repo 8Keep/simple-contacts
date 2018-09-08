@@ -24,12 +24,17 @@ h1 {
 {
 	height: 900px;
 }
-
-img
+#ContactContents
 {
+	opacity: 1.5;
+}
+.image
+{
+	background-image: url("../img/contacts.png");
+	background-size: cover;
 	width: 100%;
 	height: auto;
-	opacity: 0.5;
+	
 }
 
 .vertical-alignment-helper {

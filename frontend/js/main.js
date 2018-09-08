@@ -3,7 +3,7 @@ var username;
 $( document ).ready(function() {
     username = getUsername();
     $("#Username").html(username);
-    console.log( "document loaded! checking for username cookie." );
+    //console.log( "document loaded! checking for username cookie." );
     if (username == undefined) {
         //console.log("username is undefined");
         //TODO: Uncomment this in final version
@@ -23,7 +23,7 @@ function add() {
     $.post(
         "/COP4331-Small-Project/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
-        function(result){console.log(result);});
+        function(result){search();});
     
     
     $("#name").val("");
@@ -37,7 +37,7 @@ function getUsername() {
 
 function open()
 {
-
+    
 }
 
 function search()
@@ -64,7 +64,7 @@ function search()
         {
 
             appendText(jsonObject.records[i].name, jsonObject.records[i].id);
-            console.log(jsonObject.records[i].name);
+           // console.log(jsonObject.records[i].name);
         }
     }
     catch (err)
@@ -85,7 +85,7 @@ function appendText(name, id)
     var text = "<tr id=\"" + id + "\" onClick=\"open();\"> <td>" + name + 
         "<button class=\"btn btn-outline-secondary float-right\" onClick=\"del();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
 //<tr id="7"><td>Name</td></tr>
-    console.log(text);
+    //console.log(text);
     var contactTable = $("#contactTable");
     contactTable.append(text);
 
@@ -97,7 +97,7 @@ function del()
 {
     var id = $(event.target).parent().parent().attr("id");
     //set to server to delete this id
-
+    var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
     // post resquest - id and user name
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
@@ -108,7 +108,7 @@ function del()
         xhr.send(json);
         console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
-        console.log(jsonObject);
+        //console.log(jsonObject);
     }
     catch (err)
     {

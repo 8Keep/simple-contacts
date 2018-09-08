@@ -28,6 +28,7 @@ class User{
         $name = "{$name}";
 
         $password=htmlspecialchars(strip_tags($password));
+        $password=md5($password);
         $password = "{$password}";
 
         // bind
@@ -56,6 +57,7 @@ class User{
       $name = "{$name}";
 
       $password=htmlspecialchars(strip_tags($password));
+      $password= md5($password);
       $password = "{$password}";
 
       // bind

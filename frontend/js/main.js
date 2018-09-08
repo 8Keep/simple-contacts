@@ -12,8 +12,8 @@ $( document ).ready(function() {
     $("#searchbox").val("");
     
     //for testing:
-    //appendText("davis r", "6");
-    //appendText("the dude lewbowski", "7");
+    appendText("davis r", "6");
+    appendText("the dude lewbowski", "7");
     search();
 });
 

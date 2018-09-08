@@ -60,3 +60,7 @@ h1 {
 	outline: none !important;
 	box-shadow: none;
 }
+
+tr:hover {
+    background-color: #D2D2D2;
+}

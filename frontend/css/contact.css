@@ -63,4 +63,5 @@ h1 {
 
 tr:hover {
     background-color: #D2D2D2;
+    cursor:pointer;
 }

@@ -11,10 +11,10 @@ $( document ).ready(function() {
     }
     $("#searchbox").val("");
     
-    
-    appendText("davis r", "6");
-    appendText("the dude lewbowski", "7");
-    //search();
+    //for testing:
+    //appendText("davis r", "6");
+    //appendText("the dude lewbowski", "7");
+    search();
 });
 
 function add() {
@@ -25,7 +25,7 @@ function add() {
     $.post(
         "/COP4331-Small-Project/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
-        function(result){search(null);});
+        function(result){search();});
     
     
     $("#name").val("");

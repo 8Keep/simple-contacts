@@ -63,7 +63,7 @@ function search()
     //     json,
     //     function(result){   console.log(result);  });
     
-}
+} 
 
 function appendText(name, id)
 {
@@ -75,9 +75,28 @@ function appendText(name, id)
 
 }
 
-function delete()
+function del()
 {
+    var id = $(event.target).parent().parent().attr("id");
+    //set to server to delete this id
 
-    $(this).parent.parent().remove(); 
-    //$("#" + id).remove();
+    // post resquest - id and user name
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(json);
+        console.log(xhr.responseText);
+        var jsonObject = JSON.parse( xhr.responseText );
+        console.log(jsonObject);
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+
+    $(event.target).parent().parent().remove();
+
 }

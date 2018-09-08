@@ -11,7 +11,7 @@ $( document ).ready(function() {
         //window.location.href="index.html";
     }
     $("#searchbox").val("");
-    appendText("bao", 1);
+    
     search();
 });
 
@@ -35,12 +35,17 @@ function getUsername() {
     return Cookies.get("username");
 }
 
+function open()
+{
+
+}
+
 function search()
 {
     //console.log("search clicked: " + $("#searchbox").val());
     var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
-    alert(json);
+    //alert(json);
 
 
     var xhr = new XMLHttpRequest();
@@ -50,13 +55,21 @@ function search()
     try
     {
         xhr.send(json);
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
-        console.log(jsonObject);
+        var i;
+
+        var contactTable = $("#contactTable").empty();
+        for(i=0; i<jsonObject.records.length; i++)
+        {
+
+            appendText(jsonObject.records[i].name, jsonObject.records[i].id);
+            console.log(jsonObject.records[i].name);
+        }
     }
     catch (err)
     {
-        console.log(err);
+        alert(err);
     }
 
     // $.post(
@@ -69,8 +82,8 @@ function search()
 function appendText(name, id)
 {
 
-    var text = "<tr id=\"" + id + "\"> <td>" + name + 
-        "<button class=\"btn btn-outline-secondary float-right\" onClick=\"delete();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
+    var text = "<tr id=\"" + id + "\" onClick=\"open();\"> <td>" + name + 
+        "<button class=\"btn btn-outline-secondary float-right\" onClick=\"del();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
 //<tr id="7"><td>Name</td></tr>
     console.log(text);
     var contactTable = $("#contactTable");

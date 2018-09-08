@@ -37,7 +37,7 @@ function getUsername() {
 
 function open()
 {
-    
+    console.log("hello");
 }
 
 function search()
@@ -95,16 +95,19 @@ function appendText(name, id)
 
 function del()
 {
-    var id = $(event.target).parent().parent().attr("id");
+    var id = $(event.target).parent().attr("id");
+    console.log(id);
+    console.log(event.target);
     //set to server to delete this id
     var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
+    console.log(json);
     // post resquest - id and user name
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
-    
+    // var json = "{ \"name\":\"" + username + "\", \"id\":" + id +  " }";
+    //alert(json);
     try
     {
         xhr.send(json);

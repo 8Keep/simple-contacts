@@ -22,7 +22,7 @@ h1 {
 
 .this-row
 {
-	height: 900px;
+	height: 600px;
 }
 #ContactContents
 {
@@ -32,8 +32,8 @@ h1 {
 {
 	background-image: url("../img/contacts.png");
 	background-size: cover;
-	width: 100%;
-	height: auto;
+	/*width: 100%;*/
+	/*height: auto;*/
 	
 }
 

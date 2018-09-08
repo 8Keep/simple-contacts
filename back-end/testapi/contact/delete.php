@@ -21,16 +21,16 @@ $contact = new Contact($db, "contacts");
 // get contact info to be deleted
 $data = json_decode(file_get_contents("php://input"));
 $contact->id = $data->id;
-$contact->name = $data->name;
-$contact->phone = $data->phone;
-$contact->address = $data->address;
+$contact->name = $data->username;
+// $contact->phone = $data->phone;
+// $contact->address = $data->address;
 
 
 // get keywords from url query string
 //$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
 
 // delete the contact
-if($contact->delete($contact->id)){
+if($contact->delete($contact->id,$contact->name)){
     echo json_encode(
         array("message" => "Contact was deleted.")
     );

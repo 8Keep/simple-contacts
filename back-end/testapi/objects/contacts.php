@@ -82,7 +82,8 @@ class Contact{
   function delete($keywords, $username){
 
       // delete query
-      $query = "DELETE FROM " . $this->table_name . " WHERE id LIKE ? AND UserID = (SELECT UserID FROM login WHERE username = ?)";
+      $query = "DELETE FROM " . $this->table_name . " WHERE id = ? AND UserID = (SELECT UserID FROM login WHERE username = ?)";
+      
       // prepare query
       $stmt = $this->conn->prepare($query);
 
@@ -98,7 +99,7 @@ class Contact{
       $stmt->bindParam(2, $username);
 
       // execute query
-      if($stmt->execute() && $stmt->rowCount() > 0){
+      if($stmt->execute()){
           return true;
       }
 

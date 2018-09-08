@@ -3,7 +3,6 @@ var username;
 $( document ).ready(function() {
     username = getUsername();
     $("#Username").html(username);
-    //console.log( "document loaded! checking for username cookie." );
     if (username == undefined) {
         //console.log("username is undefined");
         //TODO: Uncomment this in final version
@@ -12,7 +11,10 @@ $( document ).ready(function() {
     }
     $("#searchbox").val("");
     
-    search();
+    
+    appendText("davis r", "6");
+    appendText("the dude lewbowski", "7");
+    //search();
 });
 
 function add() {
@@ -23,7 +25,7 @@ function add() {
     $.post(
         "/COP4331-Small-Project/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
-        function(result){search();});
+        function(result){search(null);});
     
     
     $("#name").val("");
@@ -35,19 +37,16 @@ function getUsername() {
     return Cookies.get("username");
 }
 
-function open()
+function open(event)
 {
+    event.stopPropagation();
     console.log("hello");
 }
 
 function search()
 {
-    //console.log("search clicked: " + $("#searchbox").val());
     var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
-    //alert(json);
-
-
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/search.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -55,7 +54,6 @@ function search()
     try
     {
         xhr.send(json);
-        //console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
         var i;
 
@@ -64,41 +62,20 @@ function search()
         {
 
             appendText(jsonObject.records[i].name, jsonObject.records[i].id);
-           // console.log(jsonObject.records[i].name);
         }
     }
     catch (err)
     {
         alert(err);
     }
-
-    // $.post(
-    //     "/COP4331-Small-Project/back-end/testapi/contact/search.php",
-    //     json,
-    //     function(result){   console.log(result);  });
-    
-} 
-
-function appendText(name, id)
-{
-
-    var text = "<tr id=\"" + id + "\" onClick=\"open();\"> <td>" + name + 
-        "<button class=\"btn btn-outline-secondary float-right\" onClick=\"del();\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
-//<tr id="7"><td>Name</td></tr>
-    //console.log(text);
-    var contactTable = $("#contactTable");
-    contactTable.append(text);
-
-    //contactTable.empty();
 }
 
-
-function del()
+function del(event)
 {
-    var id = $(event.target).parent().attr("id");
+    event.stopPropagation();
+    var id = $(event.target).parent().parent().attr("id");
     console.log(id);
     console.log(event.target);
-    //set to server to delete this id
     var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
     console.log(json);
     // post resquest - id and user name
@@ -106,14 +83,11 @@ function del()
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    // var json = "{ \"name\":\"" + username + "\", \"id\":" + id +  " }";
-    //alert(json);
     try
     {
         xhr.send(json);
         console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
-        //console.log(jsonObject);
     }
     catch (err)
     {
@@ -124,3 +98,13 @@ function del()
 } 
 
 
+function appendText(name, id)
+{
+    //TODO: fix the table click to be able to open a contact
+    //onClick=\"open(event);\"
+    var text = "<tr id=\"" + id + "\" > <td>" + name + 
+        "<button class=\"btn btn-outline-secondary float-right\" onClick=\"del(event);\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
+    
+    var contactTable = $("#contactTable")//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
+    contactTable.append(text);
+}

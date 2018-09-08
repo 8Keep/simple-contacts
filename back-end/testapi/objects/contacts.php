@@ -99,7 +99,7 @@ class Contact{
       $stmt->bindParam(2, $username);
 
       // execute query
-      if($stmt->execute()){
+      if($stmt->execute() && $stmt->rowCount() > 0){
           return true;
       }
 

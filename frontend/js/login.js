@@ -27,11 +27,7 @@ function doLogin()
 		console.log(xhr.responseText);
 		var jsonObject = JSON.parse( xhr.responseText );
 		console.log(jsonObject);
-		
-		// userId = jsonObject.id;
-		
-		// if( userId < 1 )
-		// {
+
 		if(jsonObject.message == "Successful Login!")
 		{
             Cookies.set("username", login);
@@ -41,22 +37,7 @@ function doLogin()
 		else
 			document.getElementById("loginResult").className = "text-danger";
 		document.getElementById("loginResult").innerHTML = jsonObject.message;
-		
 
-		// 	return;
-		// }
-		
-		// firstName = jsonObject.firstName;
-		// lastName = jsonObject.lastName;
-
-		// document.getElementById("userName").innerHTML = firstName + " " + lastName;
-		
-		// document.getElementById("loginName").value = "";
-		// document.getElementById("loginPassword").value = "";
-		
-		// hideOrShow( "loggedInDiv", true);
-		// hideOrShow( "accessUIDiv", true);
-		// hideOrShow( "loginDiv", false);
 	}
 	catch(err)
 	{
@@ -64,3 +45,12 @@ function doLogin()
 	}
 	
 }
+
+$( document ).ready(function() {
+    $("#loginPassword").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#login").click();
+        }
+    });
+});
+              

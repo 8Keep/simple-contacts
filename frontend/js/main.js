@@ -103,6 +103,8 @@ function del()
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
+    var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
+    
     try
     {
         xhr.send(json);
@@ -112,7 +114,7 @@ function del()
     }
     catch (err)
     {
-        console.log(err);
+        alert(err);
     }
 
     $(event.target).parent().parent().remove();

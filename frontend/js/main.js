@@ -9,6 +9,7 @@ $( document ).ready(function() {
         //alert("User is not logged in! You will now be redirected to login.");
         //window.location.href="index.html";
     }
+    $(".ContactContents").css("visibility","hidden");
     $("#searchbox").val("");
     
     //for testing:
@@ -41,27 +42,50 @@ function getUsername() {
 function display(event)
 {
     event.stopPropagation();
-    // var vis = 
-    $("#ContactContents").css("visibility","visible");
+    
+    
     var id = $(event.target).parent().attr("id");
     var json = "{ \"id\":\"" + id + "\"}";
-    console.log(json);
+    var IDattr = "t" +id;
+    //checking if the name was clicked or not
+    if($(".ContactContents").attr('id') != IDattr)
+    {
+        $(".ContactContents").attr('id', IDattr);
+        $("#" + IDattr).css("visibility", "hidden");
+    }
+    else
+    {
+        $(".ContactContents").attr('id', IDattr);
+    }
+    
+    console.log($(".ContactContents").attr('id'));
+    console.log($("#" + IDattr).attr('style'));
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/display.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //display toggle
+    if($("#" + IDattr).css("visibility") == "hidden")
+        $("#" + IDattr).css("visibility","visible");
+    
+    else
+        $("#" + IDattr).css("visibility", "hidden");
 
     try
     {
         xhr.send(json);
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
-        console.log(jsonObject);
+        //console.log(jsonObject);
+
         var name = jsonObject.records[0].name;
         var phone = jsonObject.records[0].phone;
         var address = jsonObject.records[0].address;
         $("#contactname").html(name);
         $("#contactphone").html(phone);
         $("#contactaddress").html(address);
+
+        
+    
     }
     catch (err)
     {
@@ -99,10 +123,10 @@ function del(event)
 {
     event.stopPropagation();
     var id = $(event.target).parent().parent().attr("id");
-    console.log(id);
+    //console.log(id);
     console.log(event.target);
     var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
-    console.log(json);
+    //console.log(json);
     // post resquest - id and user name
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
@@ -111,12 +135,12 @@ function del(event)
     try
     {
         xhr.send(json);
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var jsonObject = JSON.parse( xhr.responseText );
     }
     catch (err)
     {
-        alert(err);
+        //alert(err);
     }
 
     $(event.target).parent().parent().remove();
@@ -129,7 +153,7 @@ function appendText(name, id)
     //onClick=\"open(event);\"
     var text = "<tr id=\"" + id + "\" > <td onClick=\"display(event);\">" + name + 
         "<button class=\"btn btn-outline-secondary float-right fa fa-trash\" onClick=\"del(event);\" type=\"button\"></button></td></tr>";
-    console.log(text);
+    //console.log(text);
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
     contactTable.append(text);
 }

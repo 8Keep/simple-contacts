@@ -27,7 +27,7 @@ h1 {
 }
 #bigleftcol
 {
-	max-width: 450px;
+	max-width: 400px;
 	height: 100vh;
 }
 #leftcol
@@ -44,7 +44,7 @@ h1 {
 	/*height: auto;*/
 	
 }
-#ContactContents
+.ContactContents
 {
 	display: table;
 	width: 100%;
@@ -52,7 +52,7 @@ h1 {
 	pointer-events:none;
 	margin-top: 50px;
 }
-#ContactContents tr td
+.ContactContents tr td
 {
 	border: solid 1px black;
 	text-align: left;

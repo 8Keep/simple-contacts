@@ -140,5 +140,17 @@ class Contact{
 
       return $stmt;
   }
+
+  //A SMALL DISPLAY FUNCTION ADDED BY BAO (OF COURSE COPY AND PASTE FROM HUGH CODES)
+  function display($keywords){
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? ";
+        $stmt = $this->conn->prepare($query);
+
+        $keywords=htmlspecialchars(strip_tags($keywords));
+        $keywords = "{$keywords}";
+        $stmt->bindParam(1, $keywords);
+        $stmt->execute();
+        return $stmt;
+  }
 }
 ?>

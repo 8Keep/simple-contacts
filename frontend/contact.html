@@ -33,9 +33,6 @@
     <li class="nav-item">
       <a class="nav-link navbut" href="#" data-toggle="modal" data-target="#addPopup">Add</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link navbut" href="#">Delete</a>
-    </li>
    </ul>
    <ul class="nav navbar-nav navbar-right">
     <li class="nav-item">
@@ -46,7 +43,7 @@
 </nav>
 <div class="container-fluid ">
     <div class="row this-row">
-        <div id="leftcol" class="col-3 border-right">
+        <div id="bigleftcol" class="col-3 border-right">
             <div id="searchboxgroup" class="mt-2 input-group">
                 <div class="input-group mb-3">
                     <input id="searchbox" type="text" class="form-control" placeholder="Search...">
@@ -55,11 +52,18 @@
                     </div>
                 </div>
             </div>
-                <table id="contactTable" class="table">Contacts
+            <p>Contacts</p>
+            <div id="leftcol">
+                <table id="contactTable" class="table">
                 </table>
             </div>
-        <div class="col-9 image">
-            <p id="ContactContents"></p>
+        </div>
+        <div id="bigrightcol" class="col-9 image">
+            <table id="ContactContents" style="visibility: hidden;">
+                <tr><td>Name:</td><td id="contactname">Bao Hong</td></tr>
+                <tr><td>Phone#:</td><td id="contactphone">321-440-8647</td></tr>
+                <tr><td>Address:</td><td id="contactaddress">911 Mesa Oak Ct</td></tr>
+            </table>
             <!-- <img src ="img/contacts.jpg"></img> -->
         </div>
     </div>

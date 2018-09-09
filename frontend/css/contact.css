@@ -1,3 +1,4 @@
+
 h1 {
 /* 	text-align: left; */
 	font-size: 500%;
@@ -19,24 +20,43 @@ h1 {
 	margin-top: -8px;
 
 }
-
-.this-row
+#bigrightcol
 {
-	height: 900px;
+	height: 100vh;
+	text-align: center;
 }
-#ContactContents
+#bigleftcol
 {
-	opacity: 1.5;
+	max-width: 450px;
+	height: 100vh;
+}
+#leftcol
+{
+	height: 80%;
+	overflow-y: scroll;
 }
 .image
 {
 	background-image: url("../img/contacts.png");
-	background-size: cover;
+	background-repeat: no-repeat;
+	background-size: contain;
 	/*width: 100%;*/
 	/*height: auto;*/
 	
 }
-
+#ContactContents
+{
+	display: table;
+	width: 100%;
+	height: 40%;
+	pointer-events:none;
+	margin-top: 50px;
+}
+#ContactContents tr td
+{
+	border: solid 1px black;
+	text-align: left;
+}
 .vertical-alignment-helper {
     display:table;
     height: 100%;

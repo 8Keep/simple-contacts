@@ -21,6 +21,7 @@ $contact = new Contact($db);
 // get contact info to be deleted
 $data = json_decode(file_get_contents("php://input"));
 $contact->id = $data->id;
+var_dump($data->id);
 $contact->username = $data->username;
 
 // get keywords from url query string

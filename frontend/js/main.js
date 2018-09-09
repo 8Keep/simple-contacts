@@ -37,11 +37,36 @@ function getUsername() {
     return Cookies.get("username");
 }
 
+//DISPLAY CONTACT INFO 
 function display(event)
 {
     event.stopPropagation();
-    var id = $(event.target).parent().parent().attr("id");
-    console.log(id);
+    // var vis = 
+    $("#ContactContents").css("visibility","visible");
+    var id = $(event.target).parent().attr("id");
+    var json = "{ \"id\":\"" + id + "\"}";
+    console.log(json);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/display.php", false);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(json);
+        console.log(xhr.responseText);
+        var jsonObject = JSON.parse( xhr.responseText );
+        console.log(jsonObject);
+        var name = jsonObject.records[0].name;
+        var phone = jsonObject.records[0].phone;
+        var address = jsonObject.records[0].address;
+        $("#contactname").html(name);
+        $("#contactphone").html(phone);
+        $("#contactaddress").html(address);
+    }
+    catch (err)
+    {
+        alert(err);
+    }
 }
 
 function search()
@@ -102,8 +127,8 @@ function appendText(name, id)
 {
     //TODO: fix the table click to be able to open a contact
     //onClick=\"open(event);\"
-    var text = "<tr id=\"" + id + "\" > <td>" + name + 
-        "<button class=\"btn btn-outline-secondary float-right fa fa-trash\" onClick=\"del(event);\" onmouseover=\"display(event);\" type=\"button\"></button></td></tr>";
+    var text = "<tr id=\"" + id + "\" > <td onClick=\"display(event);\">" + name + 
+        "<button class=\"btn btn-outline-secondary float-right fa fa-trash\" onClick=\"del(event);\" type=\"button\"></button></td></tr>";
     console.log(text);
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
     contactTable.append(text);

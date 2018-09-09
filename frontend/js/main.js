@@ -144,6 +144,7 @@ function del(event)
     }
 
     $(event.target).parent().parent().remove();
+    location.reload();
 } 
 
 

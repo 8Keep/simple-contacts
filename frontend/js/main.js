@@ -108,3 +108,11 @@ function appendText(name, id)
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
     contactTable.append(text);
 }
+$( document ).ready(function() {
+    $("#searchbox").keyup(function(event) {
+        if (event.keyCode == 13) {
+            $("#searchClick").click();
+        }
+    });
+});
+      

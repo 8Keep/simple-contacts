@@ -33,7 +33,7 @@ h1 {
 #leftcol
 {
 	height: 80%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .image
 {

@@ -48,7 +48,7 @@ function doLogin()
 
 $( document ).ready(function() {
     $("#loginPassword").keyup(function(event) {
-        if (event.keyCode === 13) {
+        if (event.keyCode == 13) {
             $("#login").click();
         }
     });

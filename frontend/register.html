@@ -66,7 +66,7 @@ h1{
 <div class="container">
     <div class="container" id="testB">
         <h1><center> Contact Form </center></h1>
-        <form class="form">
+        <form class="form" onsubmit="doCreate();">
             <div class="form-group">
                 <input id="CreateName" class="form-control input-lg" placeholder="Email" type="text" required>
             </div>
@@ -76,9 +76,10 @@ h1{
             <div class="form-group">
                 <input id="checkPass" class="form-control input-lg" placeholder="Enter Password Again" type="password" required>
             </div>
-            
+
             <div class="form-group">
-                <a href="#" class="btn btn-primary btn-lg btn-block" onclick="doCreate();">Register</a>
+                <!-- <a href="#" class="btn btn-primary btn-lg btn-block" onclick="doCreate();">Register</a> -->
+                <input type="submit" class="btn btn-primary btn-lg btn-block" name="" value="Register">
             </div>
             <span id="CreateResult"></span>
             <div class="form-group">

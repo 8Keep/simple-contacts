@@ -18,7 +18,14 @@ $( document ).ready(function() {
     search();
 });
 
-function add() {
+function add(event) {
+    if($("#name").val() == "" && $("#phone").val() == "" && $("#address").val() == "")
+    {
+        $("#adderr").html("Require at least one information");
+        $(event.target).attr("data-dismiss", "");
+        return;
+    }
+    $(event.target).attr("data-dismiss", "modal");
     var contact = { name: $("#name").val(),
                     phone: $("#phone").val(),
                     address: $("#address").val(),

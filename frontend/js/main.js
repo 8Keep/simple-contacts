@@ -67,7 +67,7 @@ function display(event)
 {
     event.stopPropagation();
     
-    
+    // $(".image").css("visibility","hidden");
     var id = $(event.target).parent().attr("id");
     var json = "{ \"id\":\"" + id + "\"}";
     var IDattr = "t" +id;
@@ -92,7 +92,10 @@ function display(event)
         $("#" + IDattr).css("visibility","visible");
     
     else
-        $("#" + IDattr).css("visibility", "hidden");
+        {
+            $("#" + IDattr).css("visibility", "hidden");
+            // $(".image").css("visibility","visible");
+        }
 
     try
     {

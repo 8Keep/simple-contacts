@@ -89,7 +89,7 @@ function display(event)
     }
     catch (err)
     {
-        alert(err);
+        //alert(err);
     }
 }
 
@@ -143,8 +143,14 @@ function del(event)
         //alert(err);
     }
 
+    //delete will also get rid of the table but does not affect tables of undelte objects
     $(event.target).parent().parent().remove();
-    location.reload();
+    if($(".ContactContents").attr('id') == ("t" + id))
+        $(".ContactContents").css("visibility","hidden");
+    else
+    {
+
+    }
 } 
 
 

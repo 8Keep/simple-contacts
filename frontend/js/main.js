@@ -13,15 +13,24 @@ $( document ).ready(function() {
     $("#searchbox").val("");
     
     //for testing:
-    appendText("davis r", "6");
-    appendText("the dude lewbowski", "7");
+    // appendText("davis r", "6");
+    // appendText("the dude lewbowski", "7");
     search();
 });
-
+function dismissErr()
+{
+    $("#adderr").html("");
+    $("#name").val("");
+    $("#phone").val("");
+    $("#address").val("");
+    
+}
 function add(event) {
-    if($("#name").val() == "" && $("#phone").val() == "" && $("#address").val() == "")
+    
+
+    if($("#name").val() == "") /*&& $("#phone").val() == "" && $("#address").val*/
     {
-        $("#adderr").html("Require at least one information");
+        $("#adderr").html("Name is required");
         $(event.target).attr("data-dismiss", "");
         return;
     }
@@ -30,15 +39,23 @@ function add(event) {
                     phone: $("#phone").val(),
                     address: $("#address").val(),
                     username: username };
+    var r;
     $.post(
         "/COP4331-Small-Project/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
-        function(result){search();});
-    
-    
+        function(result){search();
+            r = result.message;
+            console.log(r);});
+
+    if(r == "Contact was created.")
+        dismissErr();
+
     $("#name").val("");
     $("#phone").val("");
     $("#address").val("");
+    
+    
+    
 }
 
 function getUsername() {
@@ -129,9 +146,9 @@ function search()
 function del(event)
 {
     event.stopPropagation();
-    var id = $(event.target).parent().parent().attr("id");
-    //console.log(id);
-    console.log(event.target);
+    var id = $(event.currentTarget).parent().parent().attr("id");
+    // console.log("del "+id);
+    // console.log(event.currentTarget);
     var json = "{ \"username\":\"" + username + "\", \"id\":" + id +  " }";
     //console.log(json);
     // post resquest - id and user name
@@ -151,7 +168,7 @@ function del(event)
     }
 
     //delete will also get rid of the table but does not affect tables of undelte objects
-    $(event.target).parent().parent().remove();
+    $(event.currentTarget).parent().parent().remove();
     if($(".ContactContents").attr('id') == ("t" + id))
         $(".ContactContents").css("visibility","hidden");
     else
@@ -161,12 +178,20 @@ function del(event)
 } 
 
 
+//this function purpose is solely for testing, add onmouseover event to test
+// function testinfo(event)
+// {
+//     event.stopPropagation();
+//     var id = $(event.currentTarget).parent().parent().attr("id");
+//     console.log(id);
+// }
+
 function appendText(name, id)
 {
     //TODO: fix the table click to be able to open a contact
     //onClick=\"open(event);\"
     var text = "<tr id=\"" + id + "\" > <td onClick=\"display(event);\">" + name + 
-        "<button class=\"btn btn-outline-secondary float-right fa fa-trash\" onClick=\"del(event);\" type=\"button\"></button></td></tr>";
+        "<button class=\"btn btn-outline-secondary float-right \" onClick=\"del(event);\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
     //console.log(text);
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
     contactTable.append(text);

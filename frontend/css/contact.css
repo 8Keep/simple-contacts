@@ -37,16 +37,21 @@ h1 {
 }
 .image
 {
-	background-image: url("../img/contacts.png");
+	background-image: url("../img/contacts2.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	/*width: 100%;*/
 	/*height: auto;*/
 	
 }
+.info
+{
+	width: 35%;
+}
 .ContactContents
 {
 	display: table;
+	table-layout: fixed;
 	width: 100%;
 	height: 40%;
 	pointer-events:none;
@@ -54,7 +59,9 @@ h1 {
 }
 .ContactContents tr td
 {
-	border: solid 1px black;
+	/*border: solid 1px black;*/
+	font-family: 'Open Sans', sans-serif;
+	font-size: 30px;
 	text-align: left;
 }
 .vertical-alignment-helper {

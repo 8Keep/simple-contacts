@@ -11,9 +11,13 @@ function doCreate()
 	console.log(password);
 	console.log(checkPass);
 
+	$("#testB").submit(function(event) {
+    event.preventDefault();});
+
 	if(password != checkPass)
 		{
 			document.getElementById("CreateResult").innerHTML = "Passwords do not match";
+			document.getElementById("CreateResult").className = "text-danger";
 			return;
 		}
 

@@ -46,7 +46,8 @@ h1 {
 }
 .nameSelector:hover
 {
-	opacity: 1;
+	background-color: #589de2;
+	color: white;
 }
 #tableHeader
 {
@@ -55,6 +56,10 @@ h1 {
 .info
 {
 	width: 25%;
+}
+.btn-back
+{
+	background-color: white;
 }
 .custom-margin
 {

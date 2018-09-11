@@ -41,7 +41,7 @@ function add(event) {
                     username: username };
     var r;
     $.post(
-        "/back-end/testapi/contact/create.php",
+        "https://peopleorderourpatties.com/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
         function(result){search();
             r = result.message;
@@ -251,7 +251,7 @@ function appendText(name, id)
     //TODO: fix the table click to be able to open a contact
     //onClick=\"open(event);\"
     var text = "<tr id=\"" + id + "\" class=\"nameSelector\"> <td onClick=\"display(event);\">" + name + 
-        "<button class=\"btn btn-outline-secondary float-right \" onClick=\"del(event);\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
+        "<button class=\"btn btn-back btn-outline-secondary float-right \" onClick=\"del(event);\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
     //console.log(text);
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")
     contactTable.append(text);

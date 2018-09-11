@@ -41,7 +41,7 @@ function add(event) {
                     username: username };
     var r;
     $.post(
-        "/COP4331-Small-Project/back-end/testapi/contact/create.php",
+        "/back-end/testapi/contact/create.php",
         JSON.stringify(contact),
         function(result){search();
             r = result.message;
@@ -130,7 +130,7 @@ function display(event)
     console.log($(".ContactContents").attr('class'));
     console.log($("#" + IDattr).attr('style'));
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/display.php", false);
+    xhr.open("POST", "https://peopleorderourpatties.com/back-end/testapi/contact/display.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     //display toggle
     // if($("#" + IDattr).hasClass("slide-out"))
@@ -178,7 +178,7 @@ function search()
     var json = "{ \"username\":\"" + username + "\", \"keyword\":\"" + $("#searchbox").val() +  "\" }";
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/search.php", false);
+    xhr.open("POST", "https://peopleorderourpatties.com/back-end/testapi/contact/search.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try
@@ -209,7 +209,7 @@ function del(event)
     //console.log(json);
     // post resquest - id and user name
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/delete.php", false);
+    xhr.open("POST", "https://peopleorderourpatties.com/back-end/testapi/contact/delete.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try

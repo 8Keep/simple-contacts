@@ -1,4 +1,4 @@
-var urlBase = 'http://localhost/COP4331-Small-Project/back-end/testapi';
+var urlBase = 'https://peopleorderourpatties.com/back-end/testapi';
 var extension = "php";
 
 

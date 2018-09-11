@@ -2,26 +2,26 @@
 <html>
 
 <head>
-<title>Register Contacts</title>
+<title>Login Page</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-<script type="text/javascript" src="js/create.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
-<link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+<script type="text/javascript" src="js/login.js"></script>
 
+<link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
 
 
 <style type="text/css">
 body {
-    background-image: url("/frontend/img/contactLogin.jpg"); 
+    background-image: url("/img/contactLogin.jpg"); 
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -30,11 +30,11 @@ body {
     -o-background-size: cover;
     background-size: cover;
 
-}   
+
+}
 
 .container {
     max-width: 450px;
-    
 }
 
 .btn {
@@ -58,31 +58,28 @@ h1{
     font-family: 'Francois One', sans-serif;
 } 
 
+
 </style>
 </head>
 <body>
 
+
 <div class="container">
     <div class="container" id="testB">
-        <h1><center> Contact Form </center></h1>
-        <form class="form" onsubmit="doCreate();">
+        <h1><center>Contact Login</center></h1>
+        <form class="form">
             <div class="form-group">
-                <input id="CreateName" class="form-control input-lg" placeholder="Username" type="text" required>
+                <input class="form-control input-lg" placeholder="Username" type="text" id="loginName">
             </div>
             <div class="form-group">
-                <input id="CreatePassword" class="form-control input-lg" placeholder="Password" type="password" required>
+                <input class="form-control input-lg" placeholder="Password" type="password" id="loginPassword">
             </div>
             <div class="form-group">
-                <input id="checkPass" class="form-control input-lg" placeholder="Enter Password Again" type="password" required>
+                <a href="#" class="btn btn-primary btn-lg btn-block" id="login" onclick="doLogin();">Sign In</a>
             </div>
-
+            <span id="loginResult"></span>
             <div class="form-group">
-                <!-- <a href="#" class="btn btn-primary btn-lg btn-block" onclick="doCreate();">Register</a> -->
-                <input type="submit" class="btn btn-primary btn-lg btn-block" name="" value="Register">
-            </div>
-            <span id="CreateResult"></span>
-            <div class="form-group">
-                <a href="index.html" class="btn btn-primary btn-lg btn-block">Back</a>
+                <a href="register.html" class="btn btn-primary btn-lg btn-block">Register</a>
             </div>
         </form>
     </div>

@@ -2,10 +2,11 @@
 class Database{
 
     // specify your own database credentials
-    private $host = "localhost";
-    private $db_name = "smallproj";
-    private $username = "root";
-    private $password = "";
+    private $host = "cop4331.cm0oj9xyv2kx.us-east-2.rds.amazonaws.com";
+    private $port = "3306"; 
+    private $db_name = "cop4331";
+    private $username = "spongebob7";
+    private $password = "spongebob7";
     public $conn;
 
     // get the database connection

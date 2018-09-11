@@ -44,9 +44,17 @@ h1 {
 	/*height: auto;*/
 	
 }
+.nameSelector:hover
+{
+	opacity: 1;
+}
+#tableHeader
+{
+	height: 10%;
+}
 .info
 {
-	width: 35%;
+	width: 25%;
 }
 .custom-margin
 {
@@ -63,7 +71,31 @@ h1 {
 	pointer-events:none;
 	/*margin-top: 100px;
 */	opacity: 0.8;
+	transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
+	/*visibility: hidden;*/
+	opacity: 0;
+	/*transform: translateZ(-10px);
+	-webkit-transform: translateZ(-10px);*/
+	/*transform: translateZ(-10);*/
 
+}
+.slide-out
+{
+	animation: slide-out 1s ease-in-out forwards;
+	-webkit-animation: slide-out 1s ease-in-out forwards;
+
+}
+.slide-in
+{
+	animation: slide-in 1s ease-in-out forwards;
+	-webkit-animation: slide-in 1s ease-in-out forwards;
+
+}
+.slide-in-back
+{
+	animation: slide-out 0.5s ease-in-out forwards;
+	-webkit-animation: slide-out 0.5s ease-in-out forwards;
 }
 .ContactContents tr td
 {
@@ -99,4 +131,31 @@ h1 {
 tr:hover {
     background-color: #D2D2D2;
     cursor:pointer;
+}
+@keyframes slide-in
+{	
+	0%{opacity: 0;}
+	100%{transform: translateX(0%);
+		/*transform: translateZ(10px);*/
+		visibility: visible;
+		opacity: 0.8;}
+}
+@-webkit-keyframes slide-in {
+	0%{opacity: 0;}
+    100% { -webkit-transform: translateX(0%); 
+    	visibility: visible;
+    	opacity: 0.8;}
+}
+@keyframes slide-out {
+    0% { transform: translateX(0%); opacity: 0.8;}
+    100% { transform: translateX(-100%); 
+    		opacity: 0;
+    		}
+}
+
+@-webkit-keyframes slide-out {
+    0% { -webkit-transform: translateX(0%); opacity: 0.8;}
+    100% { -webkit-transform: translateX(-100%); 
+    	opacity: 0;
+    	}
 }

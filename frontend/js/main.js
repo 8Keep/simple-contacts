@@ -9,7 +9,7 @@ $( document ).ready(function() {
         //alert("User is not logged in! You will now be redirected to login.");
         //window.location.href="index.html";
     }
-    $(".ContactContents").css("visibility","hidden");
+    // $(".ContactContents").css("visibility","hidden");
     $("#searchbox").val("");
     
     //for testing:
@@ -71,31 +71,84 @@ function display(event)
     var id = $(event.target).parent().attr("id");
     var json = "{ \"id\":\"" + id + "\"}";
     var IDattr = "t" +id;
-    //checking if the name was clicked or not
-    if($(".ContactContents").attr('id') != IDattr)
+    // if($(".ContactContents").hasClass("slide-in"))
+    // {
+    //     $(".ContactContents").addClass("slide-out");
+    //     $(".ContactContents").removeClass("slide-in");
+    // }
+    // else{
+    //     $(".ContactContents").addClass("slide-in");
+    //     $(".ContactContents").removeClass("slide-out");
+    // }
+    // checking if the name was clicked or not
+    console.log("id " + id);
+    console.log("tid" + IDattr);
+    console.log($(".ContactContents").attr('id'));
+    // if(!$(".ContactContents").hasClass("slide-in"))
+    //     $(".ContactContents").addClass("slide-in");
+
+    if(typeof($(".ContactContents").attr('id')) == "undefined")
     {
+        $(".ContactContents").removeClass("slide-in-back");
+        $(".ContactContents").removeClass("slide-out");
+        $(".ContactContents").addClass("slide-in");
         $(".ContactContents").attr('id', IDattr);
-        $("#" + IDattr).css("visibility", "hidden");
     }
-    else
+    else if($(".ContactContents").attr('id') != IDattr)
     {
         $(".ContactContents").attr('id', IDattr);
+        $(".ContactContents").removeClass("slide-in");
+        $(".ContactContents").addClass("slide-in-back");
+        window.setTimeout(function(){ 
+        $(".ContactContents").removeClass("slide-in-back");
+        $(".ContactContents").addClass("slide-in");
+        }, 0);
+        // $(".ContactContents").addClass("slide-in");
+        // $(".ContactContents").removeClass("slide-out");
+        // $(".ContactContents").addClass("slide-in");
+        
+       
+        // $("#" + IDattr).css("visibility", "hidden");
+    }
+    else 
+    {
+        $(".ContactContents").attr('id', IDattr);
+        if($(".ContactContents").hasClass("slide-in"))
+        {
+            $(".ContactContents").removeClass("slide-in");
+            $(".ContactContents").addClass("slide-out");
+           
+        }
+        else 
+        {
+            $(".ContactContents").removeClass("slide-out");
+            $(".ContactContents").addClass("slide-in");
+           
+        }
     }
     
-    console.log($(".ContactContents").attr('id'));
+    console.log($(".ContactContents").attr('class'));
     console.log($("#" + IDattr).attr('style'));
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/COP4331-Small-Project/back-end/testapi/contact/display.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     //display toggle
-    if($("#" + IDattr).css("visibility") == "hidden")
-        $("#" + IDattr).css("visibility","visible");
+    // if($("#" + IDattr).hasClass("slide-out"))
+    // {
+    //     $(".ContactContents").removeClass("slide-out");
+    //     $(".ContactContents").addClass("slide-in");
+       
+    // }
+
+    // }    $("#" + IDattr).css("visibility","visible");
     
-    else
-        {
-            $("#" + IDattr).css("visibility", "hidden");
-            // $(".image").css("visibility","visible");
-        }
+    // else
+    //     {
+    //         $(".ContactContents").removeClass("slide-out");
+    //         $(".ContactContents").addClass("slide-in");
+    //         // $("#" + IDattr).css("visibility", "hidden");
+    //         // $(".image").css("visibility","visible");
+    //     }
 
     try
     {
@@ -173,7 +226,11 @@ function del(event)
     //delete will also get rid of the table but does not affect tables of undelte objects
     $(event.currentTarget).parent().parent().remove();
     if($(".ContactContents").attr('id') == ("t" + id))
-        $(".ContactContents").css("visibility","hidden");
+    {
+        $(".ContactContents").removeClass("slide-in");
+        $(".ContactContents").removeClass("slide-in-back");
+        $(".ContactContents").addClass("slide-out");
+    }
     else
     {
 
@@ -193,7 +250,7 @@ function appendText(name, id)
 {
     //TODO: fix the table click to be able to open a contact
     //onClick=\"open(event);\"
-    var text = "<tr id=\"" + id + "\" > <td onClick=\"display(event);\">" + name + 
+    var text = "<tr id=\"" + id + "\" class=\"nameSelector\"> <td onClick=\"display(event);\">" + name + 
         "<button class=\"btn btn-outline-secondary float-right \" onClick=\"del(event);\" type=\"button\"><span class=\"fa fa-trash\"></span></button></td></tr>";
     //console.log(text);
     var contactTable = $("#contactTable");//.append("<tr ").attr(".html("<span class=\"fa fa-trash\"></span>")

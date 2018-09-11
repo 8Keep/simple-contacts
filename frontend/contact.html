@@ -75,7 +75,8 @@ h1{
         </div>
         <div id="bigrightcol" class="col-9 image">
             <div class="custom-margin"></div>
-            <table class="ContactContents table table-striped table-dark" style="visibility: hidden;">
+            <table class="ContactContents table table-striped table-dark" >
+                <tr><td id="tableHeader" class="info thead-light">Information</td></tr>
                 <tr><td class="info">Name:</td><td id="contactname"></td></tr>
                 <tr><td class="info">Phone#:</td><td id="contactphone"></td></tr>
                 <tr><td class="info">Address:</td><td id="contactaddress"></td></tr>
@@ -91,7 +92,7 @@ h1{
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Add</h4>
-                    <button type="button" class="close" data-dismiss="modal" onclick="dismissErr();">
+                    <button type="button" class="close" data-dismiss="modal" onclick="dismissErr();" >
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
